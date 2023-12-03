@@ -106,6 +106,36 @@ green&white;,;09/15/17,   Gail Phelps   ;,;$30.52
 ;,;   $22.66   ;,; green&white&blue;,;09/15/17"""
 
 daily_sales_replaced = daily_sales.replace(';,;', '_')
-
+print(daily_sales_replaced)
 daily_transactions = daily_sales_replaced.split(',')
-print(daily_transactions)
+daily_transactions_split = []
+for trans in daily_transactions:
+    daily_transactions_split.append(trans.split('_'))
+print(daily_transactions_split)
+
+transactions_clean = []
+for trans in daily_transactions_split:
+    for data in trans:
+        transactions_clean.append(data.strip())
+
+customers, sales, threads_sold = [], [], []
+print(transactions_clean)
+for item in range(0, len(transactions_clean), 4):
+    customers.append(transactions_clean[item])
+    sales.append(transactions_clean[item +1])
+    threads_sold.append(transactions_clean[item+2])
+    
+print()
+print(customers)
+print()
+print(sales)
+print()
+print(threads_sold)
+print()
+
+total_sales = 0
+for sale in sales:
+    total_sales += float(sale.strip('$'))
+
+print()
+print('%.2f' %total_sales)
