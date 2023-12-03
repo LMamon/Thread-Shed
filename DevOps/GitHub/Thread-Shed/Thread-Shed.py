@@ -139,3 +139,21 @@ for sale in sales:
 
 print()
 print('%.2f' %total_sales)
+
+threads_sold_split = []
+for color in threads_sold:
+    if "&" in color:
+        threads_sold_split.extend(color.split('&'))
+    else:
+        threads_sold_split.append(color)
+
+def color_count(color):
+    return sum(1 for item in threads_sold_split if color in item)
+
+print(color_count('white'))
+
+colors = ['red', 'yellow', 'green', 'white', 'black', 'blue', 'purple']
+print()
+for item in colors:
+    script = "{} {} threads sold today."
+    print(script.format(color_count(item), item))
